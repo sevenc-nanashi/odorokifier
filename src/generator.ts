@@ -137,6 +137,7 @@ export type Preset = (typeof presets)[number];
 
 const level = (value: number) => (value < 30 ? 0 : value < 70 ? 1 : 2);
 
+export const defaultTopic = "「AI驚き屋」風の投稿が簡単にできるようになったこと";
 export function generatePrompt(preset: Preset, values: ParameterValues, topic = "") {
   const subject = topic.trim();
   const sections = [
@@ -161,7 +162,7 @@ export function generatePrompt(preset: Preset, values: ParameterValues, topic = 
       "出力指定",
       "日本語の投稿本文だけを出力する。前置き・解説・メタ発言は一切禁止。金融・医療・法律を扱うときは架空の場面にし、契約・治療などの具体的な助言を避ける。文字数はX投稿を想定して適度に短くまとめる。",
     ],
-    ["投稿テーマ", subject || "「AI驚き屋」風の投稿が簡単にできるようになったこと"],
+    ["投稿テーマ", subject || defaultTopic],
   ];
   return sections.map(([heading, body]) => "# " + heading + "\n" + body).join("\n\n");
 }

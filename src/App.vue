@@ -7,6 +7,7 @@ import {
   generatePrompt,
   type Preset,
   type ParameterValues,
+  defaultTopic,
 } from "./generator.ts";
 
 const preset = ref(presets[0]);
@@ -158,8 +159,8 @@ function closeOnBackdrop(event: MouseEvent) {
               type="text"
               id="topic"
               v-model="topic"
-              placeholder="例：AIによるブラウザの自動操作"
               autocomplete="off"
+              :placeholder="`例：${defaultTopic}`"
             />
           </div>
         </section>
