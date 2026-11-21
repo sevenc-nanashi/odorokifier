@@ -36,10 +36,7 @@ export const parameters = [
   },
 ] as const;
 
-export type ParameterValues = Record<
-  (typeof parameters)[number]["key"],
-  number
->;
+export type ParameterValues = Record<(typeof parameters)[number]["key"], number>;
 
 export const presets = [
   {
@@ -140,11 +137,7 @@ export type Preset = (typeof presets)[number];
 
 const level = (value: number) => (value < 30 ? 0 : value < 70 ? 1 : 2);
 
-export function generatePrompt(
-  preset: Preset,
-  values: ParameterValues,
-  topic = "",
-) {
+export function generatePrompt(preset: Preset, values: ParameterValues, topic = "") {
   const subject = topic.trim();
   const sections = [
     [
@@ -155,10 +148,7 @@ export function generatePrompt(
       "口調プリセット｜" + preset.name,
       preset.styleInstructions + " 強さは以下の個別設定を優先する。",
     ],
-    ...parameters.map(({ key, label }) => [
-      label,
-      rules[key][level(values[key])],
-    ]),
+    ...parameters.map(({ key, label }) => [label, rules[key][level(values[key])]]),
     [
       "文章構成",
       "掴み（「ちょっと待って。」や緊急警告） → 特徴やメリットの短文列挙 → 本人の解釈・結論の飛躍 → 未来予測と行動喚起の順に組み立てる。未来予測と行動喚起は設定に合わせる。1文は短く、改行を多用してリズムを作る。",
@@ -171,12 +161,7 @@ export function generatePrompt(
       "出力指定",
       "日本語の投稿本文だけを出力する。前置き・解説・メタ発言は一切禁止。金融・医療・法律を扱うときは架空の場面にし、契約・治療などの具体的な助言を避ける。文字数はX投稿を想定して適度に短くまとめる。",
     ],
-    [
-      "投稿テーマ",
-      subject || "「AI驚き屋」風の投稿が簡単にできるようになったこと",
-    ],
+    ["投稿テーマ", subject || "「AI驚き屋」風の投稿が簡単にできるようになったこと"],
   ];
-  return sections
-    .map(([heading, body]) => "# " + heading + "\n" + body)
-    .join("\n\n");
+  return sections.map(([heading, body]) => "# " + heading + "\n" + body).join("\n\n");
 }
