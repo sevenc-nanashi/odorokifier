@@ -2,6 +2,7 @@ export const parameters = [
   { key: "shallowness", label: "理解の浅さ", low: "正確な理解", high: "概念の混同", icon: "brain" },
   { key: "excitement", label: "テンション", low: "冷静", high: "大興奮", icon: "activity" },
   { key: "assertiveness", label: "断言度", low: "慎重", high: "言い切る", icon: "flag" },
+  { key: "emoji", label: "絵文字の多さ", low: "なし", high: "たっぷり", icon: "smile" },
   { key: "provocation", label: "煽り度", low: "控えめ", high: "強く促す", icon: "megaphone" },
 ] as const;
 
@@ -14,7 +15,13 @@ export const presets = [
     description: "驚きを短文でたたみかける",
     icon: "bolt",
     color: "violet",
-    defaultParameters: { shallowness: 75, excitement: 95, assertiveness: 85, provocation: 90 },
+    defaultParameters: {
+      shallowness: 75,
+      excitement: 95,
+      assertiveness: 85,
+      provocation: 90,
+      emoji: 85,
+    },
     styleInstructions:
       "「ちょっと待って。」と発見を切り出し、短文を連ねる。驚きが強いときは「ヤバすぎる」「革命」などの大きな言葉を使う。",
   },
@@ -24,7 +31,13 @@ export const presets = [
     description: "見出しと特典で惹きつける",
     icon: "news",
     color: "mint",
-    defaultParameters: { shallowness: 80, excitement: 65, assertiveness: 85, provocation: 70 },
+    defaultParameters: {
+      shallowness: 80,
+      excitement: 65,
+      assertiveness: 85,
+      provocation: 70,
+      emoji: 50,
+    },
     styleInstructions:
       "速報見出しで始め、短い行と空行で情報を小出しにする。利点や条件は「・」で列挙し、「詳しく解説します」で引きを作る。実在する金額や特典を創作しない。",
   },
@@ -34,7 +47,13 @@ export const presets = [
     description: "「つまり」で本質を語る",
     icon: "glasses",
     color: "butter",
-    defaultParameters: { shallowness: 85, excitement: 35, assertiveness: 70, provocation: 45 },
+    defaultParameters: {
+      shallowness: 85,
+      excitement: 35,
+      assertiveness: 70,
+      provocation: 45,
+      emoji: 15,
+    },
     styleInstructions:
       "技術解説のように、観察と解釈を段落で分ける。「ここが重要」「つまり」でつなぎ、本質を説明する語り口にする。解釈の正確さは認知ルールに従う。",
   },
@@ -44,7 +63,13 @@ export const presets = [
     description: "生産性と機会損失を語る",
     icon: "briefcase",
     color: "sky",
-    defaultParameters: { shallowness: 70, excitement: 75, assertiveness: 95, provocation: 85 },
+    defaultParameters: {
+      shallowness: 70,
+      excitement: 75,
+      assertiveness: 95,
+      provocation: 85,
+      emoji: 50,
+    },
     styleInstructions:
       "使う側と使わない側の仕事風景を対比し、生産性、競争優位、機会損失の語彙を使う。読者への呼びかけの強さは煽り度に従う。",
   },
@@ -57,9 +82,14 @@ const rules = {
     "特徴をひとつだけ正しく捉え、本来は別の概念を同一視して誤った結論に飛躍する。本人は誤解に気づかず、本質をつかんだつもりで自然に語る。",
   ],
   excitement: [
-    "落ち着いた語彙と平熱の文体で淡々と書く。感嘆符・絵文字・大げさな感嘆詞を使わない。",
+    "落ち着いた語彙と平熱の文体で淡々と書く。感嘆符・大げさな感嘆詞を使わない。",
     "発見した喜びをカジュアルに表す。驚きは一言に収め、勢いと読みやすさを両立する。",
-    "最大級の驚きを、勢いのある短い感嘆文で畳みかける。感嘆符や絵文字を使い、反応の大きさで興奮を表す。",
+    "最大級の驚きを、勢いのある短い感嘆文で畳みかける。感嘆符を使い、反応の大きさで興奮を表す。",
+  ],
+  emoji: [
+    "絵文字を使わない。",
+    "投稿全体に絵文字を1〜3個添える。内容に合うものを選び、連続させない。",
+    "各文や見出しに絵文字を添え、投稿全体にたっぷり使う。同じ絵文字を連続させてもよい。",
   ],
   assertiveness: [
     "結論は「かもしれない」「とも考えられる」で慎重に述べる。これは語尾の留保とし、自分の理解の深さを論評しない。",

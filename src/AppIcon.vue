@@ -20,6 +20,7 @@ const shapes: Record<string, string> = {
   activity: '<path d="M2 13h4l3-9 5 16 3-9 2 2h3"/>',
   flag: '<path d="M5 21V3m0 1c6-4 8 4 15 0v10c-7 4-9-4-15 0"/>',
   megaphone: '<path d="M3 10h4l11-5v14L7 14H3v-4Zm4 4 2 6h3l-2-5m11-5 1-1m-1 5 1 1"/>',
+  smile: '<circle cx="12" cy="12" r="9"/><path d="M8 14a4 4 0 0 0 8 0M8 9h.01M16 9h.01"/>',
   copy: '<rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3"/>',
   check: '<path d="m4 12 5 5L20 6"/>',
   x: '<path d="m5 5 14 14M19 5 5 19"/>',

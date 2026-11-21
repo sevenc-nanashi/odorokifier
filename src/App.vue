@@ -241,7 +241,7 @@ function closeOnBackdrop(event: MouseEvent) {
     <ol>
       <li>
         <strong>口調プリセットを選ぶ</strong>
-        <p>文体を選ぶと、4つのスライダーにその口調の初期値が入ります。</p>
+        <p>文体を選ぶと、5つのスライダーにその口調の初期値が入ります。</p>
       </li>
       <li>
         <strong>理解の浅さや投稿テーマを調整する</strong>

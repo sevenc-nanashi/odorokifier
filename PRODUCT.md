@@ -12,7 +12,7 @@ Vite+、Vize、Vue、slopstrap。Vue の単一ファイルコンポーネント�
 
 ## Product Purpose
 
-元サイトの4種類の口調、4つの調整値、任意のテーマから、SNS文体を風刺する創作プロンプトを作る。
+元サイトの4種類の口調、5つの調整値、任意のテーマから、SNS文体を風刺する創作プロンプトを作る。
 
 ## Capabilities and Constraints
 
