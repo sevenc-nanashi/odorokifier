@@ -138,12 +138,36 @@ export type Preset = (typeof presets)[number];
 const level = (value: number) => (value < 30 ? 0 : value < 70 ? 1 : 2);
 
 export const defaultTopic = "「AI驚き屋」風の投稿が簡単にできるようになったこと";
-export function generatePrompt(preset: Preset, values: ParameterValues, topic = "") {
+export const lengthModes = {
+  short: {
+    label: "140字以内",
+    instruction:
+      "投稿をひとつ書き、本文全体を140字以内に収める。句読点・空白・改行・絵文字も文字数に含める。収まらない場合は要点を絞り、他の文体指定より文字数制限を優先する。",
+  },
+  unlimited: {
+    label: "制限なし",
+    instruction: "投稿をひとつ書く。文字数の上限は設けず、内容に必要な長さでまとめる。",
+  },
+  thread: {
+    label: "スレッド（各140字以内）",
+    instruction:
+      "2件以上のツイートで、ひとつながりのスレッドを作る。基本は3件構成で、最初は掴みと何が起きたかの導入、中盤は特徴・メリットと本人の解釈・結論、最後は短い締めにする。解釈の飛躍は理解の浅さに、締めの行動喚起の有無と強さは煽り度に従う。内容に応じて件数を調整し、「つまり」「しかも」「なぜなら」など話が展開する箇所や文・意味の切れ目で自然に分ける。各ツイートは句読点・空白・改行・絵文字・連番・URLを含めて140字以内に収め、収まらなければ要約するか件数を増やす。先頭行に1/N、2/Nの形式で連番を一度だけ付け、Nは実際の総件数に置き換える。末尾の連番や連番への絵文字装飾は付けず、ツイート間は空行で区切る。リンクは投稿テーマに与えられたURLだけを必要に応じて使い、創作しない。文章構成はスレッド全体に適用し、他の文体指定より各ツイートの文字数制限を優先する。",
+  },
+} as const;
+
+export type LengthMode = keyof typeof lengthModes;
+
+export function generatePrompt(
+  preset: Preset,
+  values: ParameterValues,
+  topic = "",
+  lengthMode: LengthMode = "short",
+) {
   const subject = topic.trim();
   const sections = [
     [
       "ロール",
-      "あなたはSNS（特にX）でAIや新しいサービスを紹介する、架空の「AI驚き屋」です。一般化した発信スタイルを使い、パロディ投稿をひとつ書いてください。実際の商材販売や虚偽情報は避け、あくまで口調の再現に徹する。",
+      "あなたはSNS（特にX）でAIや新しいサービスを紹介する、架空の「AI驚き屋」です。一般化した発信スタイルを使い、指定された文字数・投稿形式でパロディを書いてください。実際の商材販売や虚偽情報は避け、あくまで口調の再現に徹する。",
     ],
     [
       "口調プリセット｜" + preset.name,
@@ -160,8 +184,9 @@ export function generatePrompt(preset: Preset, values: ParameterValues, topic = 
     ],
     [
       "出力指定",
-      "日本語の投稿本文だけを出力する。前置き・解説・メタ発言は一切禁止。金融・医療・法律を扱うときは架空の場面にし、契約・治療などの具体的な助言を避ける。文字数はX投稿を想定して適度に短くまとめる。",
+      "日本語の投稿本文だけを出力する。前置き・解説・メタ発言は一切禁止。金融・医療・法律を扱うときは架空の場面にし、契約・治療などの具体的な助言を避ける。",
     ],
+    ["文字数・投稿形式", lengthModes[lengthMode].instruction],
     ["投稿テーマ", subject || defaultTopic],
   ];
   return sections.map(([heading, body]) => "# " + heading + "\n" + body).join("\n\n");

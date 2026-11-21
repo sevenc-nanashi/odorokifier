@@ -10,6 +10,7 @@ body {
   min-width: 320px;
 }
 button,
+select,
 input {
   font: inherit;
 }
@@ -244,7 +245,8 @@ h2,
   color: var(--muted);
   font-weight: 400;
 }
-#topic {
+#topic,
+#length-mode {
   width: 100%;
   margin-top: 12px;
   padding: 12px;

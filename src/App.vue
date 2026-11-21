@@ -8,18 +8,23 @@ import {
   type Preset,
   type ParameterValues,
   defaultTopic,
+  lengthModes,
+  type LengthMode,
 } from "./generator.ts";
 
-const preset = ref(presets[0]);
+const preset = ref<Preset>(presets[0]);
 const values = ref<ParameterValues>({ ...preset.value.defaultParameters });
 const topic = ref("");
+const lengthMode = ref<LengthMode>("short");
 const guide = useTemplateRef<HTMLDialogElement>("guide");
 const copied = ref(false);
 const copyError = ref(false);
 let feedbackTimer: ReturnType<typeof setTimeout> | undefined;
 let copyRevision = 0;
 
-const promptText = computed(() => generatePrompt(preset.value, values.value, topic.value));
+const promptText = computed(() =>
+  generatePrompt(preset.value, values.value, topic.value, lengthMode.value),
+);
 const promptParts = computed(() =>
   promptText.value.split(/(\n\n|^)(?=# )/u).map((part) => {
     const end = part.indexOf("\n");
@@ -149,6 +154,16 @@ function closeOnBackdrop(event: MouseEvent) {
                 ><span>{{ parameter.high }}</span>
               </div>
             </div>
+          </div>
+          <div class="topic">
+            <label for="length-mode"
+              ><AppIcon class="section-icon" name="file" />文字数・投稿形式</label
+            >
+            <select id="length-mode" v-model="lengthMode">
+              <option v-for="(mode, key) in lengthModes" :key="key" :value="key">
+                {{ mode.label }}
+              </option>
+            </select>
           </div>
           <div class="topic">
             <label for="topic"
