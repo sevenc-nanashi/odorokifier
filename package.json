@@ -1,0 +1,23 @@
+{
+  "name": "surprisify-prompt-maker",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vp dev",
+    "build": "vp build",
+    "preview": "vp preview",
+    "check": "vp check && npm run typecheck",
+    "typecheck": "tsrs --runExternalCode --noEmit -p tsconfig.json",
+    "fmt": "vp fmt"
+  },
+  "dependencies": {
+    "vue": "^3.5.46"
+  },
+  "devDependencies": {
+    "@vizejs/vite-plugin": "^0.787.0",
+    "tsrs": "^7.1.0-beta.tsrs4",
+    "vite-plus": "1.4.0",
+    "vize": "^0.787.0"
+  }
+}

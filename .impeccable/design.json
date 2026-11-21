@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-21T06:21:24Z",
+  "title": "Design System: AI驚き屋メーカー",
+  "extensions": {
+    "colorMeta": {
+      "purple": {
+        "role": "primary",
+        "displayName": "紫",
+        "tonalRamp": [
+          "oklch(15% 0.25 303)",
+          "oklch(26% 0.25 303)",
+          "oklch(38% 0.25 303)",
+          "oklch(49% 0.25 303)",
+          "oklch(61% 0.25 303)",
+          "oklch(72% 0.25 303)",
+          "oklch(84% 0.25 303)",
+          "oklch(95% 0.25 303)"
+        ]
+      },
+      "cyan": {
+        "role": "secondary",
+        "displayName": "シアン",
+        "tonalRamp": [
+          "oklch(15% 0.126 221)",
+          "oklch(26% 0.126 221)",
+          "oklch(38% 0.126 221)",
+          "oklch(49% 0.126 221)",
+          "oklch(61% 0.126 221)",
+          "oklch(72% 0.126 221)",
+          "oklch(84% 0.126 221)",
+          "oklch(95% 0.126 221)"
+        ]
+      },
+      "background": {
+        "role": "neutral",
+        "displayName": "濃紺",
+        "tonalRamp": [
+          "oklch(15% 0.034 265)",
+          "oklch(26% 0.034 265)",
+          "oklch(38% 0.034 265)",
+          "oklch(49% 0.034 265)",
+          "oklch(61% 0.034 265)",
+          "oklch(72% 0.034 265)",
+          "oklch(84% 0.034 265)",
+          "oklch(95% 0.034 265)"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "白",
+        "tonalRamp": [
+          "oklch(15% 0.003 248)",
+          "oklch(26% 0.003 248)",
+          "oklch(38% 0.003 248)",
+          "oklch(49% 0.003 248)",
+          "oklch(61% 0.003 248)",
+          "oklch(72% 0.003 248)",
+          "oklch(84% 0.003 248)",
+          "oklch(95% 0.003 248)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "青灰色",
+        "tonalRamp": [
+          "oklch(15% 0.033 263)",
+          "oklch(26% 0.033 263)",
+          "oklch(38% 0.033 263)",
+          "oklch(49% 0.033 263)",
+          "oklch(61% 0.033 263)",
+          "oklch(72% 0.033 263)",
+          "oklch(84% 0.033 263)",
+          "oklch(95% 0.033 263)"
+        ]
+      }
+    },
+    "shadows": [
+      {
+        "name": "dialog",
+        "value": "0 24px 64px #0008",
+        "purpose": "ダイアログを前面に置く"
+      }
+    ],
+    "motion": [
+      {
+        "name": "button",
+        "value": "transform 0.2s ease, box-shadow 0.25s ease",
+        "purpose": "ボタンの操作反応。動きを減らす設定では停止"
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact",
+        "value": "1050px"
+      },
+      {
+        "name": "stack",
+        "value": "790px"
+      },
+      {
+        "name": "narrow",
+        "value": "400px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "コピー",
+      "kind": "button",
+      "description": "コピー",
+      "html": "<button class=\"ds-copy\">プロンプトをコピー</button>",
+      "css": ".ds-copy{font-family:var(--slop-font-sans);font-size:.925rem;font-weight:600;padding:.75rem 1.45rem;border:1px solid transparent;border-radius:var(--slop-radius-md);cursor:pointer;transition:transform .2s ease,box-shadow .25s ease;background:var(--slop-gradient);color:#fff;min-height:50px;width:100%;box-shadow:0 0 26px rgba(139,92,246,.48)}.ds-copy:hover{transform:translateY(-2px);box-shadow:0 0 38px rgba(168,85,247,.72)}.ds-copy:active{transform:translateY(1px) scale(.99)}.ds-copy:focus-visible{outline:3px solid #c4b5fd;outline-offset:4px}",
+      "refersTo": "button-primary"
+    },
+    {
+      "name": "使い方",
+      "kind": "button",
+      "description": "使い方",
+      "html": "<button class=\"ds-help\">使い方</button>",
+      "css": ".ds-help{font-family:var(--slop-font-sans);font-size:.925rem;font-weight:600;padding:.75rem 1.45rem;border:1px solid transparent;border-radius:var(--slop-radius-md);cursor:pointer;transition:transform .2s ease,box-shadow .25s ease;background:var(--slop-glass);color:var(--slop-text);border-color:var(--slop-border);min-height:44px}.ds-help:hover{background:var(--slop-glass-strong);transform:translateY(-2px)}.ds-help:active{transform:translateY(1px) scale(.99)}.ds-help:focus-visible{outline:3px solid #c4b5fd;outline-offset:4px}"
+    },
+    {
+      "name": "テーマ入力",
+      "kind": "input",
+      "description": "テーマ入力",
+      "html": "<input class=\"ds-topic\" aria-label=\"投稿テーマ\" placeholder=\"例：AIによるブラウザの自動操作\">",
+      "css": ".ds-topic{font-family:var(--slop-font-sans);padding:12px;border:1px solid #566079;border-radius:8px;background:#0b1020;color:#edf0fa;caret-color:#c4b5fd}.ds-topic::placeholder{color:#a1adc3;font-size:.85rem}.ds-topic:focus-visible{outline:3px solid #c4b5fd;outline-offset:4px}",
+      "refersTo": "input"
+    },
+    {
+      "name": "操作パネル",
+      "kind": "card",
+      "description": "操作パネル",
+      "html": "<section class=\"ds-panel\">パラメーター調整</section>",
+      "css": ".ds-panel{font-family:var(--slop-font-sans);color:var(--slop-text);background:var(--slop-surface);border:1px solid var(--slop-border);border-radius:var(--slop-radius-lg);padding:24px;transition:border-color .25s ease,box-shadow .25s ease}.ds-panel:hover{border-color:rgba(168,85,247,.45);box-shadow:0 20px 40px -15px rgba(0,0,0,.65),0 0 28px rgba(139,92,246,.22)}",
+      "refersTo": "panel"
+    },
+    {
+      "name": "LIVE 表示",
+      "kind": "chip",
+      "description": "LIVE 表示",
+      "html": "<span class=\"ds-live\">LIVE</span>",
+      "css": ".ds-live{font-family:var(--slop-font-sans);display:inline-flex;padding:.2rem .6rem;border-radius:var(--slop-radius-pill);font-size:.65rem;font-weight:700;letter-spacing:.06em;background:rgba(16,185,129,.16);border:1px solid rgba(16,185,129,.45);color:#6ee7b7}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Odorokifier の操作卓",
+    "overview": "既存のロゴとマスコットを残し、slopstrap の暗い背景と紫・シアンの発光を組み合わせる。設定と結果を見比べて操作できる密度を保つ。",
+    "keyCharacteristics": [
+      "暗い面と発光するアクセント",
+      "日本語の操作ラベルと等幅の生成文",
+      "既存のロゴとマスコット"
+    ],
+    "rules": [
+      {
+        "name": "The Slopstrap Rule",
+        "body": "紫からシアンへのグラデーションは指定されたブランド表現として、見出し・枠・主操作に使う。",
+        "section": "colors"
+      },
+      {
+        "name": "The Stable Controls Rule",
+        "body": "操作パネルはホバーしても移動させない。デスクトップのプレビューは上端 24px に追従し、モバイルでは通常の文書順に戻す。",
+        "section": "layout"
+      }
+    ],
+    "dos": [
+      "Do 既存のロゴとマスコットを引き継ぐ。",
+      "Do 操作状態とキーボードフォーカスを視覚的に示す。"
+    ],
+    "donts": [
+      "Don't slopstrap のグラデーションを一般的な装飾禁止ルールで取り除かない。",
+      "Don't 操作パネルをホバーで持ち上げない。"
+    ]
+  }
+}
