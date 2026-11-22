@@ -15,7 +15,7 @@ import {
 const preset = ref<Preset>(presets[0]);
 const values = ref<ParameterValues>({ ...preset.value.defaultParameters });
 const topic = ref("");
-const lengthMode = ref<LengthMode>("short");
+const lengthMode = ref<LengthMode>("threadPro");
 const guide = useTemplateRef<HTMLDialogElement>("guide");
 const copied = ref(false);
 const copyError = ref(false);
@@ -23,7 +23,7 @@ let feedbackTimer: ReturnType<typeof setTimeout> | undefined;
 let copyRevision = 0;
 
 const promptText = computed(() =>
-  generatePrompt(preset.value, values.value, topic.value, lengthMode.value),
+  generatePrompt(preset.value, values.value, lengthMode.value, topic.value),
 );
 const promptParts = computed(() =>
   promptText.value.split(/(\n\n|^)(?=# )/u).map((part) => {
